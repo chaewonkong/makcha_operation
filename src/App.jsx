@@ -40,24 +40,24 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
-    return (
+    const { current, pageSize, totalPages, content } = this.state;
+    return totalPages ? (
       <List
         header={<HeaderText>막차 운영 시스템</HeaderText>}
         // current={this.state.current}
         footer={
           <PaginationContainer>
             <Pagination
-              current={this.state.current}
-              defaultPageSize={this.state.pageSize}
+              current={current}
+              defaultPageSize={pageSize}
               defaultCurrent={1}
-              total={this.state.totalPages}
+              total={totalPages}
               onChange={this.onChange}
             />
           </PaginationContainer>
         }
         bordered
-        dataSource={this.state.content}
+        dataSource={content}
         renderItem={item => (
           <List.Item>
             <List.Item.Meta
@@ -68,6 +68,8 @@ class App extends Component {
           </List.Item>
         )}
       />
+    ) : (
+      <div>Loading</div>
     );
   }
 }
