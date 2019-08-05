@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { List as DefaultList, Pagination, Icon } from "antd";
 import styled from "styled-components";
+import { Container } from "../components/common";
 import { makchaApi } from "../api";
 import Header from "../components/Header";
 
 const List = styled(DefaultList)`
   //   margin-top: 5rem;
   position: absolute;
+  width: 90%;
   top: 5rem;
 `;
 
@@ -54,7 +56,7 @@ class Notice extends Component {
   render() {
     const { current, pageSize, totalPages, content } = this.state;
     return totalPages ? (
-      <>
+      <Container>
         <Header />
         <List
           current={this.state.current}
@@ -87,7 +89,7 @@ class Notice extends Component {
             </List.Item>
           )}
         />
-      </>
+      </Container>
     ) : (
       <div>Loading</div>
     );

@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { List as DefaultList, Pagination } from "antd";
 import styled from "styled-components";
 import { makchaApi } from "../api";
+import { Container } from "../components/common";
 import Header from "../components/Header";
 
 const List = styled(DefaultList)`
   //   margin-top: 5rem;
   position: absolute;
+  width: 90%;
   top: 5rem;
 `;
 
@@ -41,7 +43,7 @@ class Feedback extends Component {
   render() {
     const { current, pageSize, totalPages, content } = this.state;
     return totalPages ? (
-      <>
+      <Container>
         <Header />
         <List
           current={this.state.current}
@@ -68,7 +70,7 @@ class Feedback extends Component {
             </List.Item>
           )}
         />
-      </>
+      </Container>
     ) : (
       <div>Loading</div>
     );
