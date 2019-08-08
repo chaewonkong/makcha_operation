@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List as DefaultList, Pagination } from "antd";
+import { List as DefaultList, Pagination, Icon } from "antd";
 import styled from "styled-components";
 import { makchaApi } from "../api";
 import { Container } from "../components/common";
@@ -10,6 +10,11 @@ const List = styled(DefaultList)`
   position: absolute;
   width: 90%;
   top: 5rem;
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const PaginationContainer = styled.div`
@@ -27,6 +32,14 @@ class Feedback extends Component {
       });
     });
   }
+
+  onDelete = id => {
+    console.log(id);
+    makchaApi.deleteFeedback(id).then(res => {
+      if (res.status === 200) window.location.reload();
+      console.log("delete success");
+    });
+  };
 
   onChange = page => {
     this.setState({
@@ -63,7 +76,12 @@ class Feedback extends Component {
           renderItem={item => (
             <List.Item>
               <List.Item.Meta
-                title={<p>{item.createdDate}</p>}
+                title={
+                  <TitleWrapper>
+                    <p>{item.createdDate}</p>
+                    <Icon type="close" onClick={() => this.onDelete(item.id)} />
+                  </TitleWrapper>
+                }
                 description={"사용자: " + item.uid}
               />
               {item.feedback}
