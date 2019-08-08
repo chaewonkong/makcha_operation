@@ -35,6 +35,9 @@ const Header = () => {
         <Link to="/">
           <MenuText>피드백 확인</MenuText>
         </Link>
+        <Link to="/create-feedback">
+          <MenuText>피드백 작성</MenuText>
+        </Link>
         <Link to="/notice">
           <MenuText>공지사항 확인</MenuText>
         </Link>
